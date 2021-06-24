@@ -9,6 +9,9 @@ public class playerMovement : MonoBehaviour
     private float speedModifier;
 
     private float speedOnZAxis = 30f;
+    private float xLimitL=-22.3f;
+    private float xLimitR=22.3f;
+
 
     public static bool dragToStartBool = false;
     // Start is called before the first frame update
@@ -35,7 +38,7 @@ public class playerMovement : MonoBehaviour
         }
         if (holding && canGo)
         {
-            transform.position = new Vector3(transform.position.x + Input.mousePosition.normalized.x * speedModifier, transform.position.y, transform.position.z);
+            transform.position = new Vector3(Mathf.Clamp(transform.position.x + Input.mousePosition.normalized.x * speedModifier,xLimitL,xLimitR), transform.position.y, transform.position.z);
         }
         if (Input.GetMouseButtonUp(0))
         {
